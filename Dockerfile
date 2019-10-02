@@ -14,7 +14,7 @@ RUN pip install --trusted-host pypi.python.org -r requirements.txt
 EXPOSE 5000
 
 # Define environment variable
-ENV NAME Chat
+ENV FLASK_ENV="docker"
 
 # Run app.py when the container launches
 CMD ["python", "app.py"]
