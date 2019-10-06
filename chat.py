@@ -1,8 +1,11 @@
+from os import environ
+from dotenv import load_dotenv, find_dotenv
 from flask import Flask, render_template
 from flask_socketio import SocketIO
 
+load_dotenv(find_dotenv())
 app = Flask(__name__)
-app.config['SECRET_KEY'] = "b'\xedl\x9eL\x9c;=\x9a\xb2\xeb\x89&\x9b6\xcd\x8b\xb3dF\xf4q\xfa\xc7S"
+app.config['SECRET_KEY'] = environ.get('KEY')
 socketio = SocketIO(app)
 
 @app.route('/')
