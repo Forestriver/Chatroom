@@ -1,7 +1,7 @@
 from os import environ
 from dotenv import load_dotenv, find_dotenv
 from flask import Flask, render_template
-from flask_socketio import SocketIO
+from flask_socketio import SocketIO, emit
 
 load_dotenv(find_dotenv())
 app = Flask(__name__)
@@ -15,10 +15,10 @@ def sessions():
 def messageReceived(methods=['GET', 'POST']):
     print("Message delivered.")
 
-@socketio.on('my event')
+@socketio.on('connection')
 def handle_my_custom_event(json, methods=['GET', 'POST']):
     print("My event received: " + str(json))
-    socketio.emit('my response', json, callback=messageReceived)
+    socketio.emit('message', json, callback=messageReceived)
 
 
 
