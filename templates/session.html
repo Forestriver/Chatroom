@@ -15,11 +15,9 @@
           <input type="text" placeholder="Username..." v-model:value="username" />
           <input type="submit" value="Join" />
         </form>
-        <button @click="continueWithoutUse  rname">Join as a Guest</button>
+        <button @click="continueWithoutUsername">Join as a Guest</button>
       </div>
       <div v-if="state == 1">
-        <div class="scroll_container">
-          <div class="scroll_content">
             <ul id="chatbox">
               <li v-for="message in messages">
                 <b>[[ message.user ]]:</b> [[ message.message ]]
@@ -29,16 +27,7 @@
             <input type="text" placeholder="Message..." v-model:value="message" />
             <input type="submit" value="Send" />
             </form>
-          </div>
-        </div>
-      <div class="top_bottom_mask">
-          <div class="corner_top_mask"></div>
-      </div>
-        <div class="left_right_mask"></div>
-        <div class="left_right_mask"></div>
-        <div class="top_bottom_mask">
-          <div class="corner_bottom_mask"></div>
-        </div>
+
       </div>
     </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.js"></script>
