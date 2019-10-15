@@ -34,8 +34,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
         <script type="text/javascript" charset="utf-8">
           var socket = io.connect('http://' + document.domain + ':' + location.port);
-          socket.on('connect', function() {
-            console.log('Connect')
+          socket.on('my event', function() {
+            socket.send('User connected')
           });
           var app = new Vue({
             // State 0 for username selection
