@@ -19,8 +19,8 @@
       </div>
       <div v-if="state == 1">
             <ul id="chatbox">
-              <li v-for="message in messages">
-                <b>[[ message.user ]]:</b> [[ message.message ]]
+              <li v-for="msg in this.messages">
+                <b>[[ msg.user ]]</b> : [[ msg.message ]]
               </li>
             </ul>
             <form @submit.prevent="sendMessage">
@@ -37,6 +37,11 @@
           socket.on('my event', function() {
             socket.send('User connected')
           });
+
+          Vue.config.devtools = true;
+          Vue.options.delimiters = ['[[', ']]'];
+          // Vue.prototype.$log = console.log;
+
           var app = new Vue({
             // State 0 for username selection
             // State 1 for chat
@@ -47,14 +52,14 @@
               username: '',
               state: 0
             },
-            delimeters: ["[[", "]]"],
+            // delimeters: ["${", "}"],
               methods: {
               sendMessage: function() {
-                socket.emit('message', 'this.message');
+                socket.emit('message', {"user": this.username, "message": this.message});
                 this.message='';
               },
               setUsername: function() {
-                socket.emit('join', null);
+                socket.emit('join', this.username);
                 this.state=1;
               },
               continueWithoutUsername: function() {
