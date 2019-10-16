@@ -18,11 +18,9 @@ def handle_message(msg):
     print(msg)
     send(msg, broadcast = True)
 
-@socketio.on('username')
+@socketio.on('join')
 def join_username(username):
-    if username != '':
-        socketio.username = username
-        socketio.emit('user' + 'has joined', username)
+    emit('message', {'user':'Server', 'message':username  + ' joined the chat'}, broadcast = True)
 
 
 if __name__ == '__main__':
