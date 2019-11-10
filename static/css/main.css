@@ -5,45 +5,53 @@ header:before {
       right: 0;
       bottom: 0;
       left: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.1)),
+  background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.2)),
           url('../images/sailboat.jpg');
   background-size: cover;
-  background-attachment: fixed;
+  background-attachment: relative;
   background-repeat: no-repeat;
   background-position: bottom;
-  -webkit-animation: zoomin 7s ease-out both;
-  animation: zoomin 7s ease-out both;
-  rotation: 0.01;
+  overflow: hidden;
+  -webkit-animation: 7s cubic-bezier(.25, .25, .25, 1) fade;
+  animation: 7s cubic-bezier(.25, .25, .25, 1) fade;
+  animation-direction: normal;
   z-index: 1;
 }
 
 
-@-webkit-keyframes zoomin {
+@-webkit-keyframes fade {
   0% {
-    opacity: 0.3;
-    /* Zoom in Keyframes */
-    transform: scale(1.15) translateX(100px);}
+    opacity: 0;
+  }
   100% {
     opacity: 1;
-    transform: scale(1.01) translateX(0px);}
+  }
 }
-@keyframes zoomin {
+@keyframes fade {
   0% {
-    opacity: 0.3;
-    transform: scale(1.15) translateX(100px);}
+    opacity: 0;
+  }
   100% {
     opacity: 1;
-    transform: scale(1.01) translateX(0px);}
-} /*End of Zoom in Keyframes */
+  }
+}
 
 
+@font-face {
+  font-family: 'Arvo';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Arvo'), url(http://themes.googleusercontent.com/static/fonts/arvo/v5/MViwy4K6e56oHcyeMzjbCQ.ttf) format('truetype');
+ }
 
-
+* {
+  box-sizing: border-box;
+}
 
 #app {
-     color: #692E2E;
-      font-style: oblique;
-      font-size: larger;
+      color: #620907;
+      font-size: 20px;
+      font-family: Arvo;
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
@@ -57,7 +65,7 @@ header:before {
       -webkit-box-direction: normal;
       -ms-flex-direction: column;
       flex-direction: column;
-      height: 75vh;
+      height: 70vh;
       width: 95vw;
       position: relative;
       text-align: center;
@@ -66,40 +74,56 @@ header:before {
 
 
 input[type=text] {
-  padding: 6px 30px;
+  padding: 6px 20px;
   background-color: white;
-  border-radius: 20px;
+  border-radius: 15px;
+  border: 3px;
   font-weight: normal;
+  font-family: Arvo;
   color: black;
-  border-style: groove;
+  border-style: ridge;
+  width: 100%;
+  resize: vertical;
 }
 
 
 input[type=submit]:enabled {
-  padding: 6px 25px;
-  background-color: #66602F;
-  border-radius: 20px;
+  padding: 3px 20px;
+  background-color: #B4842B;
+  border-radius: 15px;
+  border: 3px;
+  font-family: Arvo;
   font-weight: bold;
+  font-size: medium;
+  text-align: center;
   color: black;
-  border: 1px solid #999;
+  border-style: ridge;
 }
 input[type=submit]:disabled {
-  padding: 6px 25px;
-  background-color: #B1A967;
-  border-radius: 20px;
+  padding: 3px 20px;
+  background-color: #B4842B;
+  border-radius: 15px;
+  border: 3px;
   font-weight: lighter;
+  font-family: Arvo;
+  font-size: medium;
+  text-align: center;
   color: black;
-  border: 1px solid #999;
+  border-style: ridge;
   opacity: 0.6;
 }
 
+#Username {
+  max-width: 190px;
+  text-align: center;
+  margin: 0 auto;
+}
 
 #chatbox {
-  height: 250px;
-  min-width: 530px;
-  max-width: 530px;
-  overflow-y: scroll;
+  height: 280px;
+  max-width: 750px;
+  overflow-y: auto;
   text-align: left;
-  display: flex;
-  flex-direction: column;
+  font-family: Arvo;
+  font-size: 15px;
 }
