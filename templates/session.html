@@ -1,38 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="{{url_for('static', filename = 'css/main.css')}}">
-  <title>Chatrooms</title>
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{url_for('static', filename = 'css/main.css')}}">
+    <title>Chatrooms</title>
+  </head>
 <body>
   <header>
     <section class="header-content">
      <div class="container" id="app">
-       <div v-if="state == 0">
-          <h1>Welcome to this chat! Please choose a username</h1>
-          <form @submit.prevent="setUsername">
-            <input type="text" placeholder="Username..." maxlength="25" v-model:value="username" />
-            <p><input type="submit" value="Join" v-bind:disabled = "username === ''"/></p>
-          </form>
+        <div v-if="state == 0">
+          <h1 class="input-title animate-pop-in">Welcome to this chat. Please enter a username to join.</h1>
+          <div class="container" id="Username">
+            <form @submit.prevent="setUsername">
+              <p class="input-text animate-pop-in">
+                <input type="text" maxlength="25" size="10" placeholder="Username..." v-model:value="username" />
+              </p>
+              <p class="submit-button animate-pop-in">
+                <input type="submit" value="Join" v-bind:disabled = "username === ''"/>
+              </p>
+            </form>
+          </div>
         </div>
         <div v-if="state == 1">
-            <ul id="chatbox">
+            <ul id="chatbox" v-chat-scroll>
               <li v-for="msg in this.messages">
                 <b>[[ msg.user ]]</b> : [[ msg.message ]]
               </li>
             </ul>
             <form @submit.prevent="sendMessage">
-            <input type="text" maxlength="600" size="65" placeholder="Message..." v-model:value="message" />
-            <input type="submit" value="Send" v-bind:disabled = "message ===''"/>
+              <p class="input-text animate-pop-in">
+                <input type="text" maxlength="600" size="92" placeholder="Message..." v-model:value="message" />
+              </p>
+              <p class="submit-button animate-pop-in">
+                <input type="submit" value="Send" v-bind:disabled = "message ===''"/>
+              </p>
             </form>
         </div>
      </div>
 
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/vue-chat-scroll/dist/vue-chat-scroll.min.js"></script>
       <script type="text/javascript" charset="utf-8">
         var socket = io.connect('http://' + document.domain + ':' + location.port);
         socket.on('my event', function() {
@@ -70,7 +81,6 @@
               app.messages.push(message);
               app.$nextTick(function() {
                 var messageBox = document.getElementById('chatbox');
-                messageBox.scrolltop=messageBox.scrollHeight;
               });
             });
             socket.on('username', function(username) {
