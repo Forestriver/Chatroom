@@ -2,4 +2,4 @@ build:
   docker:
     web: Dockerfile
 run:
-  web: gunicorn --worker-class eventlet -w 1 module:app
+  web: gunicorn --worker-class eventlet -w 1 chat:app
