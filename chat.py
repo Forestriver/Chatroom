@@ -1,11 +1,11 @@
 import os
 from os import environ
 from dotenv import load_dotenv, find_dotenv
+import eventlet
+eventlet.monkey_patch()
 from flask import Flask, render_template
 from flask_socketio import SocketIO, emit, send
 from flask import session
-import eventlet
-eventlet.monkey_patch(socket=True)
 
 load_dotenv(find_dotenv())
 app = Flask(__name__)
@@ -26,6 +26,7 @@ def handle_message(msg):
 @socketio.on('join')
 def join_username(username):
     emit('message', {'user':'Chat', 'message':username  + ' joined this chatroom'}, broadcast = True)
+    socketio.sleep(0)
 
 
 if __name__ == '__main__':
