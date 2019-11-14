@@ -4,7 +4,8 @@ from dotenv import load_dotenv, find_dotenv
 from flask import Flask, render_template
 from flask_socketio import SocketIO, emit, send
 from flask import session
-
+import eventlet
+eventlet.monkey_patch(socket=True)
 
 load_dotenv(find_dotenv())
 app = Flask(__name__)
@@ -28,4 +29,4 @@ def join_username(username):
 
 
 if __name__ == '__main__':
-    socketio.run(app, host='0.0.0.0')
+    socketio.run(app, debug = True)
