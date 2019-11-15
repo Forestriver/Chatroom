@@ -1,8 +1,8 @@
+import eventlet
+eventlet.monkey_patch()
 import os
 from os import environ
 from dotenv import load_dotenv, find_dotenv
-import eventlet
-eventlet.monkey_patch()
 from flask import Flask, render_template
 from flask_socketio import SocketIO, emit, send
 from flask import session
