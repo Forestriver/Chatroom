@@ -1,5 +1,3 @@
-import eventlet
-eventlet.monkey_patch()
 import os
 from os import environ
 from dotenv import load_dotenv, find_dotenv
@@ -30,4 +28,4 @@ def join_username(username):
 
 
 if __name__ == '__main__':
-    socketio.run(app, host = '0.0.0.0', port=8080)
+    socketio.run(app, host = '0.0.0.0', port=5000)
