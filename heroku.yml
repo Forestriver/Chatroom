@@ -1,7 +1,5 @@
 build:
- docker:
-   web: ./Dockerfile
- config:
-   REQUIREMENTS_FILENAME: heroku.yml
+  docker:
+    web: Dockerfile
 run:
- web: uwsgi --http 0:$PORT --wsgi-file ./config/wsgi.py --master --processes 4 --threads 2
+  web: gunicorn -k gevent -w 1 chat:app 
