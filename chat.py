@@ -11,7 +11,7 @@ load_dotenv(find_dotenv())
 app = Flask(__name__)
 #Creating path to the file with secret key
 app.config['SECRET_KEY'] = environ.get('KEY')
-socketio = SocketIO(app, manage_session = False)
+socketio = SocketIO(app, logger=True, engineio_logger=True, manage_session = False)
 
 
 @app.route('/')
@@ -30,4 +30,4 @@ def join_username(username):
 
 
 if __name__ == '__main__':
-    socketio.run(app, logger=True, engineio_logger=True, debug = True)
+    socketio.run(app, debug = True)
