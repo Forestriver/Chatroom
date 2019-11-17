@@ -30,4 +30,4 @@ def join_username(username):
 
 
 if __name__ == '__main__':
-    socketio.run(app, logger=True, engineio=True, debug = True)
+    socketio.run(app, logger=True, engineio_logger=True, debug = True)
