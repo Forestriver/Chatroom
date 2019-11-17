@@ -6,12 +6,13 @@ from dotenv import load_dotenv, find_dotenv
 from flask import Flask, render_template
 from flask_socketio import SocketIO, emit, send
 from flask import session
+from engineio.async_drivers import eventlet
 
 load_dotenv(find_dotenv())
 app = Flask(__name__)
 #Creating path to the file with secret key
 app.config['SECRET_KEY'] = environ.get('KEY')
-socketio = SocketIO(app,async_mode=ASYNC_MODE, logger=True, engineio_logger=True, manage_session = False)
+socketio = SocketIO(app, async_mode='eventlet', logger=True, engineio_logger=True, manage_session = False)
 
 
 @app.route('/')
