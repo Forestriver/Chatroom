@@ -6,7 +6,6 @@ from dotenv import load_dotenv, find_dotenv
 from flask import Flask, render_template
 from flask_socketio import SocketIO, emit, send
 from flask import session
-from engineio.async_drivers import eventlet
 
 load_dotenv(find_dotenv())
 app = Flask(__name__)
