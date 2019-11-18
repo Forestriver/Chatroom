@@ -11,7 +11,7 @@ load_dotenv(find_dotenv())
 app = Flask(__name__)
 #Creating path to the file with secret key
 app.config['SECRET_KEY'] = environ.get('KEY')
-socketio = SocketIO(app, async_mode='gevent', engineio_logger=True, manage_session = False)
+socketio = SocketIO(app, async_mode='gevent', engineio_logger=True, cors_allowed_origins='https://wuji.herokuapp.com', manage_session = False)
 
 
 @app.route('/')
