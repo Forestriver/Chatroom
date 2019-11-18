@@ -45,7 +45,7 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/vue-chat-scroll/dist/vue-chat-scroll.min.js"></script>
       <script type="text/javascript" charset="utf-8">
-        var socket = io.connect('https://' + document.domain + ':' + location.port);
+        var socket = io.connect('https://' + document.domain + ':' + location.port + namespace);
         socket.on('my event', function() {
           socket.send('User connected')
         });
